@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حزمة تقارير المدير المالي — 15 تقريراً تفصيلياً</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark:    #0B3D47;
+  --teal:    #0D6E7E;
+  --teal2:   #02A8C4;
+  --gold:    #C5972A;
+  --gold2:   #E8B84B;
+  --light:   #E8F4F6;
+  --cream:   #FDF3DC;
+  --white:   #FFFFFF;
+  --off:     #F4F8F9;
+  --text:    #1A2E35;
+  --muted:   #5A7A83;
+  --red:     #C0392B;
+  --green:   #1A7A4A;
+  --orange:  #D4770A;
+  --purple:  #7B2FBE;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--off);
+  color: var(--text);
+  direction: rtl;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top:0; z-index:200;
+  background: var(--dark);
+  padding: 0.7rem 1.2rem;
+  display: flex; align-items:center; justify-content:space-between; gap:1rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+.nav-brand { font-family:'Cairo',sans-serif; font-weight:900; color:var(--gold); font-size:0.95rem; white-space:nowrap; }
+.nav-back {
+  display:flex; align-items:center; gap:0.4rem;
+  color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.82rem;
+  background:rgba(255,255,255,0.07); padding:0.3rem 0.8rem; border-radius:20px;
+  transition:all 0.2s; white-space:nowrap;
+}
+.nav-back:hover { color:var(--gold); background:rgba(255,255,255,0.12); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #0D3D50 100%);
+  padding: 3.5rem 1.5rem 2.5rem;
+  text-align:center;
+  position:relative; overflow:hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+  width:500px; height:300px; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(13,110,126,0.3) 0%, transparent 70%);
+}
+.hero-tag {
+  display:inline-block; background:rgba(197,151,42,0.15); border:1px solid rgba(197,151,42,0.4);
+  color:var(--gold); font-size:0.78rem; font-weight:700; letter-spacing:0.12em;
+  padding:0.3rem 1rem; border-radius:20px; margin-bottom:1rem;
+}
+.hero h1 {
+  font-family:'Cairo',sans-serif; font-weight:900;
+  font-size:clamp(1.6rem,5vw,3rem); color:var(--white);
+  line-height:1.25; margin-bottom:0.7rem;
+}
+.hero h1 span { color:var(--gold); }
+.hero p { color:rgba(255,255,255,0.6); font-size:1rem; max-width:600px; margin:0 auto 2rem; }
+
+/* Stats row */
+.hero-stats {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin-bottom:1rem;
+}
+.stat-pill {
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);
+  border-radius:10px; padding:0.6rem 1.2rem; text-align:center;
+}
+.stat-pill .sv { font-family:'Cairo',sans-serif; font-size:1.4rem; font-weight:900; color:var(--white); }
+.stat-pill .sl { font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:0.1rem; }
+
+/* ── FILTERS ── */
+.filters-wrap {
+  background:var(--white);
+  padding:1rem 1.5rem;
+  box-shadow:0 2px 8px rgba(11,61,71,0.07);
+  position:sticky; top:52px; z-index:100;
+  overflow-x:auto;
+}
+.filters {
+  display:flex; gap:0.5rem; min-width:max-content;
+}
+.filter-btn {
+  background:var(--off); border:1.5px solid transparent;
+  color:var(--muted); padding:0.4rem 0.9rem; border-radius:20px;
+  font-size:0.8rem; font-family:'Tajawal',sans-serif; font-weight:600;
+  cursor:pointer; transition:all 0.2s; white-space:nowrap;
+}
+.filter-btn:hover, .filter-btn.active {
+  background:var(--dark); color:var(--white); border-color:var(--dark);
+}
+.filter-btn.f-high { }
+.filter-btn.f-high.active { background:var(--red); border-color:var(--red); }
+.filter-btn.f-med.active  { background:var(--orange); border-color:var(--orange); }
+.filter-btn.f-low.active  { background:var(--green); border-color:var(--green); }
+
+/* ── MAIN ── */
+.container { max-width:960px; margin:0 auto; padding:2rem 1.2rem 4rem; }
+
+.section-header {
+  display:flex; align-items:center; gap:0.8rem;
+  margin:2.5rem 0 1.2rem;
+}
+.section-header h2 {
+  font-family:'Cairo',sans-serif; font-size:1.15rem; font-weight:800; color:var(--dark);
+}
+.section-line { flex:1; height:2px; background:linear-gradient(to left, transparent, var(--light)); }
+.section-badge {
+  font-size:0.72rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:4px;
+  background:var(--light); color:var(--teal);
+}
+
+/* ── REPORT CARD ── */
+.report-card {
+  background:var(--white);
+  border-radius:14px;
+  box-shadow:0 4px 18px rgba(11,61,71,0.07);
+  margin-bottom:1.8rem;
+  overflow:hidden;
+  transition:transform 0.2s, box-shadow 0.2s;
+  border-right:5px solid var(--teal);
+}
+.report-card:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(11,61,71,0.12); }
+.report-card.crit-high { border-right-color: var(--red); }
+.report-card.crit-med  { border-right-color: var(--orange); }
+.report-card.crit-low  { border-right-color: var(--green); }
+
+/* Card header */
+.rc-head {
+  padding:1.2rem 1.4rem 1rem;
+  display:flex; align-items:flex-start; gap:1rem; flex-wrap:wrap;
+  border-bottom:1px solid #EBF2F4;
+}
+.rc-num {
+  font-family:'Cairo',sans-serif; font-size:1.8rem; font-weight:900;
+  color:var(--light); line-height:1; flex-shrink:0; min-width:2.2rem;
+  text-align:center;
+}
+.rc-head-info { flex:1; min-width:0; }
+.rc-title { font-family:'Cairo',sans-serif; font-weight:800; font-size:1.05rem; color:var(--dark); margin-bottom:0.4rem; }
+.rc-meta { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.tag {
+  display:inline-flex; align-items:center; gap:0.3rem;
+  font-size:0.72rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:12px;
+}
+.tag-freq  { background:#EBF2F4; color:var(--teal); }
+.tag-high  { background:#FDE8E6; color:var(--red); }
+.tag-med   { background:#FEF0E0; color:var(--orange); }
+.tag-low   { background:#E6F4EC; color:var(--green); }
+.tag-access { background:#F0EBF9; color:var(--purple); }
+
+/* Card body */
+.rc-body { padding:1.2rem 1.4rem; }
+
+.rc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:1.2rem; }
+@media(max-width:540px) { .rc-grid { grid-template-columns:1fr; } }
+
+.rc-block { }
+.rc-block h4 {
+  font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem;
+}
+.rc-block h4::before { content:''; display:inline-block; width:3px; height:12px; background:var(--gold); border-radius:2px; }
+.rc-block p, .rc-block ul { font-size:0.9rem; color:var(--text); line-height:1.75; }
+.rc-block ul { list-style:none; }
+.rc-block ul li::before { content:'← '; color:var(--teal2); font-size:0.8rem; }
+
+.rc-importance {
+  background:var(--off); border-radius:8px; padding:1rem 1.2rem;
+  margin-bottom:1rem; font-size:0.9rem; line-height:1.75;
+  border-right:3px solid var(--gold);
+}
+.rc-importance strong { color:var(--dark); }
+
+/* Sample table */
+.sample-label {
+  font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--muted); margin:1rem 0 0.5rem; display:flex; align-items:center; gap:0.4rem;
+}
+.sample-label::before { content:''; display:inline-block; width:3px; height:12px; background:var(--teal); border-radius:2px; }
+.table-wrap { overflow-x:auto; border-radius:8px; border:1px solid #DDE8EA; }
+table { width:100%; border-collapse:collapse; font-size:0.82rem; min-width:380px; }
+th {
+  background:var(--dark); color:var(--white);
+  padding:0.6rem 0.9rem; text-align:right; font-weight:600;
+  font-size:0.78rem; white-space:nowrap;
+}
+td { padding:0.55rem 0.9rem; border-bottom:1px solid #EBF2F4; text-align:right; white-space:nowrap; }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:#F5FAFB; }
+.row-h td { background:var(--light); font-weight:700; }
+.row-s td { background:#E8F8F0; font-weight:700; color:var(--green); }
+.row-w td { background:#FEF0E0; font-weight:700; }
+td.neg { color:var(--red); }
+td.pos { color:var(--green); font-weight:700; }
+td.ctr { text-align:center; }
+td.gold { color:var(--gold); font-weight:700; }
+td.red-flag { color:var(--red); }
+td.ok { color:var(--green); }
+
+/* mini kpi strip */
+.kpi-strip { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem; }
+.kpi-mini {
+  background:var(--off); border:1px solid #DDE8EA; border-radius:8px;
+  padding:0.5rem 0.9rem; text-align:center; flex:1; min-width:90px;
+}
+.kpi-mini .kv { font-family:'Cairo',sans-serif; font-size:1.2rem; font-weight:900; color:var(--dark); }
+.kpi-mini .kl { font-size:0.7rem; color:var(--muted); }
+
+/* progress bar */
+.prog-row { display:flex; align-items:center; gap:0.8rem; margin-bottom:0.5rem; font-size:0.82rem; }
+.prog-label { width:100px; flex-shrink:0; color:var(--text); font-size:0.8rem; }
+.prog-bar { flex:1; height:8px; background:#DDE8EA; border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; border-radius:4px; transition:width 0.8s ease; }
+.prog-val { width:40px; text-align:left; font-weight:700; font-size:0.78rem; }
+
+/* timeline */
+.timeline { position:relative; padding-right:1.2rem; }
+.timeline::before { content:''; position:absolute; right:5px; top:0; bottom:0; width:2px; background:#DDE8EA; }
+.tl-item { position:relative; margin-bottom:0.9rem; padding-right:1.5rem; }
+.tl-item::before { content:''; position:absolute; right:-2px; top:5px; width:10px; height:10px; border-radius:50%; background:var(--teal); border:2px solid var(--white); }
+.tl-date { font-size:0.72rem; color:var(--gold); font-weight:700; }
+.tl-text { font-size:0.85rem; color:var(--text); line-height:1.5; }
+
+/* ── BACK TO TOP ── */
+.back-top {
+  display:block; text-align:center; padding:2rem;
+  font-size:0.85rem; color:var(--muted); text-decoration:none;
+}
+.back-top:hover { color:var(--teal); }
+
+/* footer */
+footer { background:var(--dark); color:rgba(255,255,255,0.3); text-align:center; padding:1.5rem; font-size:0.78rem; }
+
+/* Reveal */
+.reveal { opacity:0; transform:translateY(20px); transition:opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">حزمة تقارير CFO — 15 تقريراً</div>
+  <a href="waqf_cfo_presentation.html" class="nav-back">← العودة للعرض الرئيسي</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">نماذج التقارير المالية التفصيلية</div>
+  <h1>حزمة تقارير <span>المدير المالي الجزئي</span><br>الكيان الوقفي الاستثماري</h1>
+  <p>وصف تفصيلي لكل تقرير من التقارير الـ15 — أهميته، استخدامه، والجهة المستفيدة منه</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="sv">15</div><div class="sl">تقريراً</div></div>
+    <div class="stat-pill"><div class="sv">8</div><div class="sl">🔴 حرجة</div></div>
+    <div class="stat-pill"><div class="sv">4</div><div class="sl">🟠 متوسطة</div></div>
+    <div class="stat-pill"><div class="sv">3</div><div class="sl">🟡 دورية</div></div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-wrap">
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards('all',this)">الكل</button>
+    <button class="filter-btn f-high" onclick="filterCards('high',this)">🔴 حرجة</button>
+    <button class="filter-btn f-med"  onclick="filterCards('med',this)">🟠 متوسطة</button>
+    <button class="filter-btn f-low"  onclick="filterCards('low',this)">🟡 دورية</button>
+    <button class="filter-btn" onclick="filterCards('monthly',this)">شهري</button>
+    <button class="filter-btn" onclick="filterCards('weekly',this)">أسبوعي</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════
+     GROUP A — HIGH CRITICALITY
+══════════════════════════════════════════════════ -->
+<div class="section-header">
+  <div class="section-badge">🔴</div>
+  <h2>التقارير الحرجة — يومية / أسبوعية / شهرية</h2>
+  <div class="section-line"></div>
+</div>
+
+<!-- 1. CFO Summary -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">01</div>
+    <div class="rc-head-info">
+      <div class="rc-title">ملخص المدير المالي التنفيذي (CFO Executive Summary)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — CEO — مجلس الإدارة</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> هذا التقرير هو الصفحة الأولى التي يقرأها مجلس الإدارة والرئيس التنفيذي. يلخص في صفحة واحدة أبرز 10 رسائل مالية وتشغيلية مع 8 مؤشرات KPI رئيسية. إغفاله يعني اتخاذ قرارات بدون صورة واضحة عن وضع الكيان.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>الاستخدام</h4>
+        <ul>
+          <li>اجتماع مجلس الإدارة الشهري</li>
+          <li>تتبع المؤشرات الحرجة بسرعة</li>
+          <li>إبراز التحذيرات والفرص</li>
+          <li>تحديد القرارات المطلوبة فوراً</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>المحتويات الأساسية</h4>
+        <ul>
+          <li>10 رسائل مالية وتشغيلية</li>
+          <li>8 مؤشرات KPI مع الهدف والانحراف</li>
+          <li>المسؤول عن كل إجراء والموعد النهائي</li>
+          <li>نظرة ربع سنوية مستقبلية</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sample-label">نموذج: 10 رسائل الإدارة العليا</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>الرسالة</th><th>الاتجاه</th><th>الإجراء المطلوب</th><th>المسؤول</th></tr></thead>
+        <tbody>
+          <tr><td class="ctr">1</td><td>الإيرادات تجاوزت الميزانية بنسبة 4.2%</td><td class="pos ctr">🟢 إيجابي</td><td>الحفاظ على الزخم</td><td>المدير التجاري</td></tr>
+          <tr><td class="ctr">2</td><td>هامش EBITDA السنوي 12.8% مقابل خطة 12.0%</td><td class="pos ctr">🟢 إيجابي</td><td>توثيق أفضل الممارسات</td><td>COO</td></tr>
+          <tr><td class="ctr">3</td><td>DSO ارتفع إلى 58 يوماً — 3 عملاء متأخرون</td><td class="ctr" style="color:var(--orange)">🟠 تحذير</td><td>تكثيف التحصيل</td><td>مدير الذمم</td></tr>
+          <tr class="row-w"><td class="ctr">4</td><td>الضريبة المستحقة 485K ر.س — الموعد 15 يناير</td><td class="ctr">🟡 معلومة</td><td>تجهيز الدفع</td><td>مدير الضرائب</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sample-label">نموذج: لوحة KPI</div>
+    <div class="kpi-strip">
+      <div class="kpi-mini"><div class="kv">28.2%</div><div class="kl">هامش الربح الإجمالي</div></div>
+      <div class="kpi-mini"><div class="kv">12.8%</div><div class="kl">هامش EBITDA</div></div>
+      <div class="kpi-mini"><div class="kv">58 يوم</div><div class="kl">DSO</div></div>
+      <div class="kpi-mini"><div class="kv">14 أسبوع</div><div class="kl">الملاءة النقدية</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. P&L -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">02</div>
+    <div class="rc-head-info">
+      <div class="rc-title">قائمة الدخل (Profit & Loss Statement)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — المراقب المالي — FP&A</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> قائمة الدخل هي المرآة الحقيقية لربحية الكيان. تُظهر مصادر الإيراد وكل مصروف بالتفصيل، وتُخرج الفائض النهائي الذي يُوزَّع وفق شرط الواقف. إغفالها يعني الجهل بمصادر النمو أو الإنفاق المفرط.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>الاستخدام</h4>
+        <ul>
+          <li>قياس الربحية الشهرية والسنوية</li>
+          <li>حساب الفائض قبل توزيع الوقف</li>
+          <li>متابعة هوامش الربح حسب المصدر</li>
+          <li>مدخل أساسي لتوزيع الريع الوقفي</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>ما يُقيسه</h4>
+        <ul>
+          <li>الإيرادات: صناديق + إيجارات</li>
+          <li>المصروفات التشغيلية التفصيلية</li>
+          <li>EBITDA والدخل التشغيلي</li>
+          <li>صافي الدخل بعد الزكاة</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج مبسّط</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>البيان</th><th>ديسمبر</th><th>% من الإيراد</th><th>السنوي YTD</th><th>% من الإيراد</th></tr></thead>
+        <tbody>
+          <tr class="row-h"><td>إجمالي الإيرادات</td><td>3,920</td><td class="ctr">100%</td><td>44,851</td><td class="ctr">100%</td></tr>
+          <tr><td>إجمالي تكلفة الإيرادات</td><td class="neg">(2,803)</td><td class="ctr neg">71.5%</td><td class="neg">(32,203)</td><td class="ctr neg">71.8%</td></tr>
+          <tr class="row-h"><td>إجمالي الربح</td><td>1,117</td><td class="ctr pos">28.5%</td><td>12,648</td><td class="ctr pos">28.2%</td></tr>
+          <tr><td>إجمالي المصروفات التشغيلية</td><td class="neg">(599)</td><td class="ctr neg">15.3%</td><td class="neg">(7,447)</td><td class="ctr neg">16.6%</td></tr>
+          <tr class="row-h"><td>EBITDA</td><td>518</td><td class="ctr pos">13.2%</td><td>5,201</td><td class="ctr pos">11.6%</td></tr>
+          <tr><td>الاستهلاك والإطفاء</td><td class="neg">(108)</td><td class="ctr"></td><td class="neg">(1,250)</td><td class="ctr"></td></tr>
+          <tr><td>إيرادات / مصاريف مالية (صافي)</td><td class="neg">(5)</td><td class="ctr"></td><td class="neg">(229)</td><td class="ctr"></td></tr>
+          <tr><td>الزكاة</td><td class="neg">(63)</td><td class="ctr"></td><td class="neg">(312)</td><td class="ctr"></td></tr>
+          <tr class="row-s"><td>صافي الدخل (الفائض)</td><td>342</td><td class="ctr">8.7%</td><td>3,410</td><td class="ctr pos">7.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Balance Sheet -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">03</div>
+    <div class="rc-head-info">
+      <div class="rc-title">الميزانية العمومية (Balance Sheet)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — المراقب المالي</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الميزانية تُعطي صورة اللحظية للوضع المالي الكامل — ما يملكه الكيان وما عليه من التزامات. أي قرار استثماري أو توزيع وقفي يستلزم فهم هيكل الأصول والالتزامات. وهي مرتبطة مباشرة بالقوائم الثلاث الأخرى ولا يمكن الاستغناء عنها.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>الأصول المتابَعة</h4>
+        <ul>
+          <li>الأصول غير المتداولة (العقارات، الاستثمارات)</li>
+          <li>الأصول المتداولة (النقد، الذمم)</li>
+          <li>مقارنة بالفترة السابقة</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>الالتزامات وحقوق الوقف</h4>
+        <ul>
+          <li>الالتزامات قصيرة وطويلة الأجل</li>
+          <li>حقوق الوقف (رأس المال + المرحّل)</li>
+          <li>التوازن: الأصول = الالتزامات + الحقوق</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج مختصر</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>البيان</th><th>31/12/2025</th><th>31/12/2024</th><th>التغيير</th></tr></thead>
+        <tbody>
+          <tr class="row-h"><td>إجمالي الأصول غير المتداولة</td><td>14,800</td><td>13,430</td><td class="pos">+1,370</td></tr>
+          <tr class="row-h"><td>إجمالي الأصول المتداولة</td><td>18,047</td><td>15,255</td><td class="pos">+2,792</td></tr>
+          <tr class="row-s"><td>إجمالي الأصول</td><td>32,847</td><td>28,685</td><td class="pos">+4,162</td></tr>
+          <tr class="row-h"><td>إجمالي حقوق الوقف</td><td>20,415</td><td>17,465</td><td class="pos">+2,950</td></tr>
+          <tr class="row-h"><td>إجمالي الالتزامات غير المتداولة</td><td>4,005</td><td>4,500</td><td class="neg">-495</td></tr>
+          <tr class="row-h"><td>إجمالي الالتزامات المتداولة</td><td>8,427</td><td>6,720</td><td class="neg">+1,707</td></tr>
+          <tr class="row-s"><td>✓ التوازن (يجب أن يساوي صفراً)</td><td class="ok ctr">0</td><td class="ok ctr">0</td><td class="ok ctr">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Cash Flow -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">04</div>
+    <div class="rc-head-info">
+      <div class="rc-title">قائمة التدفقات النقدية (Cash Flow Statement)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — إدارة الخزينة</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الكيان يمكنه أن يُظهر أرباحاً ويعجز عن دفع التزاماته — هذه الظاهرة تُكشف فقط بقائمة التدفقات. تفرق بين الربح المحاسبي والنقد الفعلي. وتُعدّ أداة إلزامية لأي كيان يوزع ريعاً دورياً.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>المحاور الثلاثة</h4>
+        <ul>
+          <li>التشغيل: النشاط الأساسي (إيجارات، صناديق)</li>
+          <li>الاستثمار: الأصول، الاستثمارات الجديدة</li>
+          <li>التمويل: القروض، التوزيعات الوقفية</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>الربط مع باقي التقارير</h4>
+        <ul>
+          <li>صافي الدخل ← من قائمة الدخل</li>
+          <li>النقد الختامي ← يساوي الميزانية</li>
+          <li>CAPEX ← يساوي سجل الاستثمارات</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج مختصر — الطريقة غير المباشرة</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>البيان</th><th>ديسمبر</th><th>السنوي FY2025</th><th>السنوي FY2024</th></tr></thead>
+        <tbody>
+          <tr class="row-h"><td>أ. صافي التدفق من الأنشطة التشغيلية</td><td class="pos">485</td><td class="pos">5,320</td><td class="pos">4,680</td></tr>
+          <tr class="row-h"><td>ب. صافي التدفق من أنشطة الاستثمار</td><td class="neg">(200)</td><td class="neg">(2,200)</td><td class="neg">(1,830)</td></tr>
+          <tr class="row-h"><td>ج. صافي التدفق من أنشطة التمويل</td><td class="neg">(75)</td><td class="neg">(1,990)</td><td class="neg">(1,750)</td></tr>
+          <tr class="row-s"><td>صافي التغير في النقد</td><td class="pos">210</td><td class="pos">1,130</td><td class="pos">1,100</td></tr>
+          <tr><td>النقد في بداية الفترة</td><td>4,640</td><td>3,720</td><td>2,620</td></tr>
+          <tr class="row-s"><td>النقد في نهاية الفترة</td><td>4,850</td><td>4,850</td><td>3,720</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 6. 13W Cash Forecast -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="weekly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">06</div>
+    <div class="rc-head-info">
+      <div class="rc-title">توقعات النقد لـ 13 أسبوعاً (13-Week Cash Forecast)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">أسبوعي</span>
+        <span class="tag tag-access">CFO — إدارة الخزينة</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> هذا التقرير هو رادار الطائرة — يُرى ما أمامك بـ 13 أسبوعاً. الكيان الوقفي يحتاج للتأكد أن لديه سيولة كافية قبل دفع التوزيعات الوقفية ربع السنوية. أي نقص في السيولة يظهر هنا قبل أن يتحول لأزمة.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>المدخلات الأساسية</h4>
+        <ul>
+          <li>تحصيلات الذمم المدينة</li>
+          <li>مدفوعات الموردين والرواتب</li>
+          <li>الالتزامات الضريبية والنظامية</li>
+          <li>التوزيعات الوقفية المجدولة</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>المخرجات المراقَبة</h4>
+        <ul>
+          <li>الرصيد الختامي كل أسبوع</li>
+          <li>الحد الأدنى المسموح (3,000 ألف ر.س)</li>
+          <li>عدد أسابيع الملاءة النقدية</li>
+          <li>تحديد الأسابيع عالية الخطورة</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج — الأسابيع الأربعة الأولى من ق1 2026</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>البيان</th><th>أسبوع 1</th><th>أسبوع 2</th><th>أسبوع 3</th><th>أسبوع 4</th></tr></thead>
+        <tbody>
+          <tr><td>الرصيد الافتتاحي</td><td>4,850</td><td>4,535</td><td>4,680</td><td>4,425</td></tr>
+          <tr><td>إجمالي التحصيلات</td><td class="pos">695</td><td class="pos">730</td><td class="pos">662</td><td class="pos">898</td></tr>
+          <tr><td>إجمالي المدفوعات</td><td class="neg">(1,010)</td><td class="neg">(585)</td><td class="neg">(917)</td><td class="neg">(503)</td></tr>
+          <tr><td>صافي التدفق</td><td class="neg">(315)</td><td class="pos">145</td><td class="neg">(255)</td><td class="pos">395</td></tr>
+          <tr class="row-s"><td>الرصيد الختامي</td><td>4,535</td><td>4,680</td><td>4,425</td><td>4,820</td></tr>
+          <tr><td>الحد الأدنى (3,000)</td><td class="ok ctr">✓</td><td class="ok ctr">✓</td><td class="ok ctr">✓</td><td class="ok ctr">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 10. Payroll -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">10</div>
+    <div class="rc-head-info">
+      <div class="rc-title">ملخص الرواتب الموحّد (Payroll Summary)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — مدير الموارد البشرية فقط</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الرواتب عادةً أكبر بند مصروف في الكيان وتحتوي على بيانات حساسة. يُعدّ هذا التقرير موحّداً (بدون بيانات فردية) ويُمكّن CFO من متابعة التكلفة الإجمالية وضمان الصرف في الموعد — أي تأخر يُشكّل مخاطرة قانونية وتشغيلية.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>ما يشمله التقرير</h4>
+        <ul>
+          <li>إجمالي الرواتب والمكافآت</li>
+          <li>توزيع التكلفة على الأقسام</li>
+          <li>عدد الموظفين والتغير الشهري</li>
+          <li>مقارنة بالميزانية والشهر السابق</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>الإجراءات المرتبطة</h4>
+        <ul>
+          <li>الصرف للموظفين في اليوم العاشر</li>
+          <li>الاشتراكات للجهات الحكومية في الـ 15</li>
+          <li>مدخل لتكلفة الموارد البشرية في P&L</li>
+          <li>تصنيف سري للغاية (PII)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج ملخص التكاليف</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th>ديسمبر (ر.س)</th><th>السنوي</th><th>الميزانية</th><th>الانحراف</th></tr></thead>
+        <tbody>
+          <tr><td>الرواتب الإجمالية</td><td>892,000</td><td>10,450,000</td><td>10,200,000</td><td class="neg">+2.5%</td></tr>
+          <tr><td>اشتراكات صاحب العمل</td><td>178,000</td><td>2,090,000</td><td>2,040,000</td><td class="neg">+2.5%</td></tr>
+          <tr><td>مكافآت سنوية</td><td>285,000</td><td>285,000</td><td>300,000</td><td class="pos">-5.0%</td></tr>
+          <tr><td>مزايا أخرى (نقل، وجبات)</td><td>42,000</td><td>504,000</td><td>480,000</td><td class="neg">+5.0%</td></tr>
+          <tr class="row-h"><td>إجمالي تكلفة الرواتب</td><td>1,397,000</td><td>13,329,000</td><td>13,020,000</td><td class="neg">+2.4%</td></tr>
+          <tr class="row-s"><td>صرف الموظفين (تحويل)</td><td class="gold">625,000</td><td></td><td></td><td class="ctr">يوم 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 11. Tax Pack -->
+<div class="report-card crit-high reveal" data-crit="high" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FCDEDE">11</div>
+    <div class="rc-head-info">
+      <div class="rc-title">حزمة الضرائب والالتزامات الزكوية (Tax Pack)</div>
+      <div class="rc-meta">
+        <span class="tag tag-high">🔴 حرجية عالية</span>
+        <span class="tag tag-freq">شهري / ربع سنوي</span>
+        <span class="tag tag-access">CFO — مدير الضرائب فقط</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> التأخر في الالتزامات الضريبية والزكوية يُفضي إلى غرامات ومخاطر قانونية. الكيان الوقفي يخضع لنظام خاص من الزكاة، وهذا التقرير يضمن التزام كل موعد دوري مع تتبع المستحقات وحالتها.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>الالتزامات المتابَعة</h4>
+        <ul>
+          <li>ضريبة القيمة المضافة (VAT) شهرياً</li>
+          <li>الزكاة على وعاء الاستثمار</li>
+          <li>ضريبة الدخل السنوية (إن وُجدت)</li>
+          <li>اشتراكات التأمينات الاجتماعية</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>التقويم الضريبي</h4>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-date">15 يناير</div><div class="tl-text">VAT ديسمبر: 485 ألف ر.س</div></div>
+          <div class="tl-item"><div class="tl-date">15 فبراير</div><div class="tl-text">VAT + دفعة مقدمة ضريبة دخل</div></div>
+          <div class="tl-item"><div class="tl-date">30 يونيو</div><div class="tl-text">ضريبة الدخل السنوية: 312 ألف ر.س</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="sample-label">نموذج تقويم الالتزامات</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>الالتزام</th><th>الموعد</th><th>المبلغ (ألف ر.س)</th><th>الحالة</th><th>المسؤول</th></tr></thead>
+        <tbody>
+          <tr><td>VAT شهر ديسمبر</td><td>15 يناير</td><td class="gold">485</td><td class="red-flag">⏳ معلّق</td><td>مدير الضرائب</td></tr>
+          <tr><td>ضريبة الرواتب</td><td>15 يناير</td><td>155</td><td class="red-flag">⏳ معلّق</td><td>HR</td></tr>
+          <tr><td>VAT شهر يناير</td><td>15 فبراير</td><td>444</td><td class="ok">📅 مجدول</td><td>مدير الضرائب</td></tr>
+          <tr class="row-h"><td>الزكاة السنوية FY2025</td><td>30 يونيو</td><td class="gold">312</td><td class="ok">📅 مجدول</td><td>مدير الضرائب</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     GROUP B — MEDIUM CRITICALITY
+══════════════════════════════════════════════════ -->
+<div class="section-header">
+  <div class="section-badge" style="background:#FEF0E0;color:var(--orange)">🟠</div>
+  <h2>التقارير متوسطة الأهمية</h2>
+  <div class="section-line"></div>
+</div>
+
+<!-- 5. Budget vs Actual -->
+<div class="report-card crit-med reveal" data-crit="med" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FEE6C0">05</div>
+    <div class="rc-head-info">
+      <div class="rc-title">مقارنة الميزانية بالفعلي (Budget vs Actual)</div>
+      <div class="rc-meta">
+        <span class="tag tag-med">🟠 متوسطة</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — FP&A — رؤساء الأقسام</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الميزانية بدون مقارنة فعلية ليست أكثر من ورقة نوايا. هذا التقرير يُحدد الانحرافات الإيجابية والسلبية بالريال والنسبة المئوية، ويُوجّه الإجراءات التصحيحية. للكيان الوقفي يُساعد في تحديد ما إذا كانت الإيرادات كافية للوفاء بالتوزيعات المخططة.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>ما يُحدده</h4>
+        <ul>
+          <li>إيرادات أعلى أو أقل من الخطة</li>
+          <li>المصروفات خارج السيطرة</li>
+          <li>أكبر 10 انحرافات تستحق المتابعة</li>
+          <li>سبب الانحراف والإجراء التصحيحي</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>المصطلحات</h4>
+        <ul>
+          <li>F (Favourable) = انحراف إيجابي ✅</li>
+          <li>U (Unfavourable) = انحراف سلبي ❌</li>
+          <li>pp = نقطة مئوية</li>
+          <li>YTD = تراكمي من بداية السنة</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج مقارنة سنوية</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th>الميزانية</th><th>الفعلي</th><th>الانحراف (ر.س)</th><th>الانحراف %</th><th>T/U</th></tr></thead>
+        <tbody>
+          <tr><td>الإيرادات</td><td>43,200</td><td>44,850</td><td class="pos">+1,650</td><td class="pos">+3.8%</td><td class="pos">F</td></tr>
+          <tr><td>تكلفة الإيرادات</td><td class="neg">(31,320)</td><td class="neg">(32,202)</td><td class="neg">(882)</td><td class="neg">-2.8%</td><td class="neg">U</td></tr>
+          <tr class="row-h"><td>الربح الإجمالي</td><td>11,880</td><td>12,648</td><td class="pos">+768</td><td class="pos">+6.5%</td><td class="pos">F</td></tr>
+          <tr><td>المصروفات التشغيلية</td><td class="neg">(7,500)</td><td class="neg">(7,447)</td><td class="pos">+53</td><td class="pos">+0.7%</td><td class="pos">F</td></tr>
+          <tr class="row-s"><td>EBITDA</td><td>4,380</td><td>5,201</td><td class="pos">+821</td><td class="pos">+18.7%</td><td class="pos">F</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 7. AR Aging -->
+<div class="report-card crit-med reveal" data-crit="med" data-freq="weekly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FEE6C0">07</div>
+    <div class="rc-head-info">
+      <div class="rc-title">تقرير تقادم الذمم المدينة + المخاطر الائتمانية (AR Aging)</div>
+      <div class="rc-meta">
+        <span class="tag tag-med">🟠 متوسطة</span>
+        <span class="tag tag-freq">أسبوعي</span>
+        <span class="tag tag-access">CFO — فريق AR — المبيعات</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الفرق بين الإيراد المسجّل والنقد المحصّل قد يكون فارق بقاء. للكيانات التي لها استثمارات تُولّد إيجارات أو مستحقات، يُعدّ هذا التقرير أداة رئيسية لحماية التدفق النقدي وتحديد المخاطر الائتمانية مبكراً.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>شرائح التقادم</h4>
+        <ul>
+          <li>0–30 يوماً: طبيعي ✅</li>
+          <li>31–60 يوماً: مراقبة 🟡</li>
+          <li>61–90 يوماً: تدخل مطلوب 🟠</li>
+          <li>90+ يوماً: مخاطرة عالية 🔴</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>المؤشرات المتابَعة</h4>
+        <ul>
+          <li>DSO (متوسط أيام التحصيل)</li>
+          <li>نسبة المخصصات على الديون المشكوك بها</li>
+          <li>العملاء ذوو المخاطر العالية</li>
+          <li>إجراء التحصيل: متابعة / وكالة / قانوني</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج ملخص التقادم</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>المستأجر / المدين</th><th>0–30 يوم</th><th>31–60 يوم</th><th>61–90 يوم</th><th>+90 يوم</th><th>الإجمالي</th><th>المخاطرة</th></tr></thead>
+        <tbody>
+          <tr><td>مستأجر أ ★</td><td>1,250</td><td>420</td><td>—</td><td>—</td><td>1,670</td><td class="ok">🟢 منخفضة</td></tr>
+          <tr><td>مستأجر ب</td><td>680</td><td>380</td><td>185</td><td>—</td><td>1,245</td><td class="gold">🟡 متوسطة</td></tr>
+          <tr><td>مستأجر ج</td><td>380</td><td>220</td><td>185</td><td>120</td><td>905</td><td class="red-flag">🔴 عالية ⚠️</td></tr>
+          <tr class="row-h"><td>الإجمالي</td><td>4,180</td><td>1,820</td><td>785</td><td>365</td><td>7,150</td><td></td></tr>
+          <tr class="row-w"><td>% من الإجمالي</td><td class="ctr">58.5%</td><td class="ctr">25.5%</td><td class="ctr">11%</td><td class="ctr red-flag">5.1%</td><td class="ctr">100%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 8. AP Aging -->
+<div class="report-card crit-med reveal" data-crit="med" data-freq="weekly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FEE6C0">08</div>
+    <div class="rc-head-info">
+      <div class="rc-title">تقرير تقادم الذمم الدائنة + أولوية الدفع (AP Aging)</div>
+      <div class="rc-meta">
+        <span class="tag tag-med">🟠 متوسطة</span>
+        <span class="tag tag-freq">أسبوعي</span>
+        <span class="tag tag-access">CFO — فريق AP — المشتريات</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الدفع للموردين في الوقت الصحيح يحمي العلاقات التجارية ويُحسّن شروط الدفع مستقبلاً. التأخر في المدفوعات الحرجة (خدمات أساسية) يوقف التشغيل. إدارة DPO بذكاء تُحسّن رأس المال العامل.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>مصفوفة أولوية الدفع</h4>
+        <ul>
+          <li>🔴 P1 حرج: خدمات أساسية — ادفع فوراً</li>
+          <li>🟡 P2 استراتيجي: موردون رئيسيون</li>
+          <li>🟢 P3 عادي: حسب الشروط المتفق عليها</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>DPO — مؤشر أيام الدفع</h4>
+        <ul>
+          <li>DPO الحالي: 52 يوماً</li>
+          <li>الهدف: 45–55 يوماً ✅</li>
+          <li>الحساب: (الذمم الدائنة / تكلفة الإيرادات) × 365</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج قائمة أولوية الدفع</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>المورد</th><th>0–30 يوم</th><th>31–60 يوم</th><th>الإجمالي</th><th>الأولوية</th><th>الإجراء</th></tr></thead>
+        <tbody>
+          <tr><td>مورد المواد الخام الأساسي</td><td>820</td><td>380</td><td>1,430</td><td class="red-flag">🔴 P1</td><td>ادفع فوراً</td></tr>
+          <tr><td>مورد استراتيجي</td><td>480</td><td>220</td><td>795</td><td class="gold">🟡 P2</td><td>خصم مبكر متاح</td></tr>
+          <tr><td>خدمات الطاقة والمرافق</td><td>150</td><td>85</td><td>285</td><td class="red-flag">🔴 P1</td><td>لا تأخير مقبول</td></tr>
+          <tr class="row-h"><td>الإجمالي (أعلى 10 موردين)</td><td>3,120</td><td>1,580</td><td>5,680</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 9. CAPEX -->
+<div class="report-card crit-med reveal" data-crit="med" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FEE6C0">09</div>
+    <div class="rc-head-info">
+      <div class="rc-title">سجل الاستثمارات الرأسمالية (CAPEX Register)</div>
+      <div class="rc-meta">
+        <span class="tag tag-med">🟠 متوسطة</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — COO — CEO</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> للكيان الوقفي، أي استثمار في أصول ثابتة (عقارات، تجديدات) يستهلك نقداً حقيقياً. هذا السجل يتابع كل مشروع من الموافقة حتى الإنجاز مع تتبع الإنفاق مقابل الميزانية المعتمدة ويمنع تجاوز الإنفاق غير المصرّح به.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>هيكل الموافقات</h4>
+        <ul>
+          <li>أقل من 50 ألف: مدير القسم + CFO</li>
+          <li>50–200 ألف: + COO</li>
+          <li>200–500 ألف: + CEO</li>
+          <li>أكثر من 500 ألف: + مجلس الإدارة</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>ما يتابعه</h4>
+        <ul>
+          <li>الميزانية المعتمدة vs الإنفاق الفعلي</li>
+          <li>نسبة الإنجاز والتاريخ المتوقع</li>
+          <li>المبرر التجاري وتحليل العائد ROI</li>
+          <li>حالة الموافقات (كل مرحلة)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج سجل المشاريع</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>رقم المشروع</th><th>الوصف</th><th>الميزانية</th><th>المنفق</th><th>المتبقي</th><th>الإنجاز</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr><td>CAP-2025-001</td><td>تجديد وحدة إيجارية — المبنى A</td><td>1,800</td><td>1,750</td><td>50</td><td class="ok ctr">97%</td><td class="ok">✅ مكتمل</td></tr>
+          <tr><td>CAP-2025-003</td><td>إضافة طابق — العقار الثاني</td><td>2,500</td><td>1,650</td><td>850</td><td class="gold ctr">66%</td><td class="gold">⚠️ متأخر</td></tr>
+          <tr><td>CAP-2025-004</td><td>نظام إدارة عقارات ERP</td><td>450</td><td>380</td><td>70</td><td class="ctr">84%</td><td class="gold">🟡 جارٍ</td></tr>
+          <tr class="row-h"><td colspan="2">الإجمالي FY2025</td><td>7,400</td><td>6,200</td><td>1,200</td><td class="ctr">84%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 12. Operations KPI -->
+<div class="report-card crit-med reveal" data-crit="med" data-freq="monthly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#FEE6C0">12</div>
+    <div class="rc-head-info">
+      <div class="rc-title">حزمة مؤشرات الأداء التشغيلي (Operations KPI Pack)</div>
+      <div class="rc-meta">
+        <span class="tag tag-med">🟠 متوسطة</span>
+        <span class="tag tag-freq">شهري</span>
+        <span class="tag tag-access">CFO — COO — مجلس الإدارة</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> الأرقام المالية وحدها لا تكفي — يجب ربطها بالمحركات التشغيلية. للكيان الوقفي يُقيس هذا التقرير معدلات الإشغال العقاري، معدل التحصيل، جودة الأصول، وأداء صناديق الاستثمار. يُنبّه مبكراً لأي تراجع قبل أن يؤثر على الإيرادات.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>مؤشرات عقارية</h4>
+        <ul>
+          <li>معدل إشغال الوحدات الإيجارية</li>
+          <li>متوسط قيمة الإيجار لكل متر</li>
+          <li>عدد العقود المتجددة vs المنتهية</li>
+          <li>مدة التأخر في دفع الإيجار (DSO)</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>مؤشرات الاستثمار</h4>
+        <ul>
+          <li>العائد على الصناديق الاستثمارية</li>
+          <li>مقارنة بالمؤشر المرجعي (Benchmark)</li>
+          <li>توزيع محفظة الاستثمارات</li>
+          <li>مخاطر التركيز في مورد واحد</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج لوحة المؤشرات</div>
+    <div class="kpi-strip">
+      <div class="kpi-mini"><div class="kv">96.8%</div><div class="kl">الإشغال العقاري</div></div>
+      <div class="kpi-mini"><div class="kv">8.4%</div><div class="kl">عائد الصناديق</div></div>
+      <div class="kpi-mini"><div class="kv">91%</div><div class="kl">نسبة التجديد</div></div>
+      <div class="kpi-mini"><div class="kv">2.3 يوم</div><div class="kl">وقت الاستجابة</div></div>
+    </div>
+    <div style="margin-top:0.8rem">
+      <div class="prog-row"><div class="prog-label">إشغال المباني</div><div class="prog-bar"><div class="prog-fill" style="width:97%;background:var(--green)"></div></div><div class="prog-val" style="color:var(--green)">97%</div></div>
+      <div class="prog-row"><div class="prog-label">عائد الصناديق</div><div class="prog-bar"><div class="prog-fill" style="width:84%;background:var(--teal)"></div></div><div class="prog-val">8.4%</div></div>
+      <div class="prog-row"><div class="prog-label">تجديد العقود</div><div class="prog-bar"><div class="prog-fill" style="width:91%;background:var(--gold)"></div></div><div class="prog-val" style="color:var(--gold)">91%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     GROUP C — LOW CRITICALITY / GOVERNANCE
+══════════════════════════════════════════════════ -->
+<div class="section-header">
+  <div class="section-badge" style="background:#E6F4EC;color:var(--green)">🟡</div>
+  <h2>تقارير الحوكمة والتوثيق — دورية / سنوية</h2>
+  <div class="section-line"></div>
+</div>
+
+<!-- 13. Data Inventory -->
+<div class="report-card crit-low reveal" data-crit="low" data-freq="quarterly">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#D4EDDA">13</div>
+    <div class="rc-head-info">
+      <div class="rc-title">جرد البيانات والمستندات (CFO Data & Documentation Inventory)</div>
+      <div class="rc-meta">
+        <span class="tag tag-low">🟡 منخفضة</span>
+        <span class="tag tag-freq">ربع سنوي</span>
+        <span class="tag tag-access">CFO — المراقب المالي</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> في حالة التدقيق أو النزاع، يجب أن يعرف CFO أين كل مستند، من يملك الوصول، وكم مدة الاحتفاظ به. هذا التقرير يُبني نظام حوكمة المعلومات المالية ويُقلّل مخاطر فقدان وثائق حيوية.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>ما يشمله الجرد</h4>
+        <ul>
+          <li>مصدر كل بيانات مالية</li>
+          <li>تكرار التحديث والمسؤول</li>
+          <li>مكان التخزين (ERP / OneDrive / DMS)</li>
+          <li>صلاحيات الوصول لكل مستوى</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>سياسة الاحتفاظ</h4>
+        <ul>
+          <li>القوائم المالية: 5 سنوات (نظامي)</li>
+          <li>الإقرارات الضريبية: 5 سنوات</li>
+          <li>الرواتب والموارد البشرية: دائم</li>
+          <li>المؤشرات التشغيلية: 5 سنوات</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">نموذج — جدول المصادر</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>التصنيف</th><th>المستند</th><th>المصدر</th><th>التكرار</th><th>الاحتفاظ</th><th>التخزين</th></tr></thead>
+        <tbody>
+          <tr><td>قوائم مالية</td><td>قائمة الدخل</td><td>نظام ERP</td><td>شهري</td><td>5 سنوات</td><td>ERP + DMS</td></tr>
+          <tr><td>التخطيط</td><td>الموازنة التقديرية</td><td>أداة FP&A</td><td>سنوي</td><td>5 سنوات</td><td>OneDrive</td></tr>
+          <tr><td>الضرائب</td><td>إقرار VAT</td><td>مدير الضرائب</td><td>شهري</td><td>5 سنوات</td><td>OneDrive + DMS</td></tr>
+          <tr><td>الرواتب</td><td>ملخص الرواتب</td><td>نظام HR</td><td>شهري</td><td>دائم</td><td class="red-flag">مقيّد — HR فقط</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 14. Processing Flow -->
+<div class="report-card crit-low reveal" data-crit="low" data-freq="annual">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#D4EDDA">14</div>
+    <div class="rc-head-info">
+      <div class="rc-title">مسار معالجة البيانات المالية (Financial Data Processing Flow)</div>
+      <div class="rc-meta">
+        <span class="tag tag-low">🟡 منخفضة</span>
+        <span class="tag tag-freq">سنوي</span>
+        <span class="tag tag-access">CFO — المراجع الداخلي</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> بدون مسار موثّق، كل موظف يعمل بطريقته، وأي تغيير في الكادر يعني فقدان المعرفة المؤسسية. المراجع الخارجي يطلب هذا الوثيقة حتماً. وهي الأساس لأي نظام رقابة داخلية فعّال.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>المراحل الست</h4>
+        <ul>
+          <li>1. الجمع: الفواتير، المستخلصات، البنوك</li>
+          <li>2. التحقق: مطابقة ثلاثية (PO/GR/Invoice)</li>
+          <li>3. الترحيل: قيود المحاسبة في ERP</li>
+          <li>4. التحليل: الانحرافات والمؤشرات</li>
+          <li>5. الإعداد: حزمة تقارير الإدارة</li>
+          <li>6. الأرشفة: وفق سياسة الاحتفاظ</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>نقاط الرقابة الحرجة</h4>
+        <ul>
+          <li>مبدأ الأربعة أعين (4-eye review)</li>
+          <li>الفصل بين الوظائف (SoD)</li>
+          <li>أثر التدقيق في كل مرحلة</li>
+          <li>التوقيع الرقمي للموافقات</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">خريطة المسار المبسّطة</div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;font-size:0.82rem;padding:0.8rem;background:var(--off);border-radius:8px;border:1px solid #DDE8EA">
+      <span style="background:var(--dark);color:var(--white);padding:0.3rem 0.7rem;border-radius:5px">1. الجمع</span>
+      <span style="color:var(--teal)">←</span>
+      <span style="background:var(--teal);color:var(--white);padding:0.3rem 0.7rem;border-radius:5px">2. التحقق</span>
+      <span style="color:var(--teal)">←</span>
+      <span style="background:var(--teal2);color:var(--white);padding:0.3rem 0.7rem;border-radius:5px">3. الترحيل</span>
+      <span style="color:var(--teal)">←</span>
+      <span style="background:var(--gold);color:var(--white);padding:0.3rem 0.7rem;border-radius:5px">4. التحليل</span>
+      <span style="color:var(--teal)">←</span>
+      <span style="background:var(--green);color:var(--white);padding:0.3rem 0.7rem;border-radius:5px">5. الإعداد</span>
+      <span style="color:var(--teal)">←</span>
+      <span style="background:var(--purple);color:var(--white);padding:0.3rem 0.7rem;border-radius:5px">6. الأرشفة</span>
+    </div>
+  </div>
+</div>
+
+<!-- 15. CFO Checklist -->
+<div class="report-card crit-low reveal" data-crit="low" data-freq="annual">
+  <div class="rc-head">
+    <div class="rc-num" style="color:#D4EDDA">15</div>
+    <div class="rc-head-info">
+      <div class="rc-title">قائمة مراجعة وثائق CFO الشاملة (CFO Documentation Checklist — 40 بنداً)</div>
+      <div class="rc-meta">
+        <span class="tag tag-low">🟡 منخفضة</span>
+        <span class="tag tag-freq">سنوي / عند الطلب</span>
+        <span class="tag tag-access">CFO — المراقب المالي — المراجع الداخلي</span>
+      </div>
+    </div>
+  </div>
+  <div class="rc-body">
+    <div class="rc-importance">
+      <strong>لماذا هو مهم؟</strong> هذه القائمة هي الاختبار الشامل لاكتمال المنظومة المالية. 40 وثيقة موزّعة على 8 فئات — إغفال أي منها قد يعرّض الكيان لخطر تدقيقي أو قانوني. إنها خريطة الاستعداد الكامل.
+    </div>
+    <div class="rc-grid">
+      <div class="rc-block">
+        <h4>الفئات الثماني</h4>
+        <ul>
+          <li>📊 القوائم المالية (5 وثائق)</li>
+          <li>📋 التقارير الإدارية (5 وثائق)</li>
+          <li>📅 التخطيط والموازنة (4 وثائق)</li>
+          <li>💰 إدارة النقدية (4 وثائق)</li>
+          <li>🔄 رأس المال العامل (4 وثائق)</li>
+          <li>🏗 الاستثمارات والأصول (4 وثائق)</li>
+          <li>⚖️ الضرائب والامتثال (4 وثائق)</li>
+          <li>🔒 الرقابة والتدقيق (10 وثائق)</li>
+        </ul>
+      </div>
+      <div class="rc-block">
+        <h4>معيار الاكتمال</h4>
+        <ul>
+          <li>40/40 وثيقة مكتملة = ✅ جاهز للتدقيق</li>
+          <li>30–39 = 🟡 مقبول مع ملاحظات</li>
+          <li>أقل من 30 = 🔴 خطر تدقيقي عالٍ</li>
+          <li>مراجعة سنوية من CFO + مراجع داخلي</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sample-label">ملخص حالة الوثائق</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.6rem">
+      <div style="background:var(--off);border:1px solid #DDE8EA;border-radius:8px;padding:0.7rem;text-align:center">
+        <div style="font-size:1.4rem;font-weight:900;font-family:'Cairo';color:var(--green)">40/40</div>
+        <div style="font-size:0.72rem;color:var(--muted)">وثائق مكتملة</div>
+      </div>
+      <div style="background:var(--off);border:1px solid #DDE8EA;border-radius:8px;padding:0.7rem;text-align:center">
+        <div style="font-size:1.4rem;font-weight:900;font-family:'Cairo';color:var(--green)">100%</div>
+        <div style="font-size:0.72rem;color:var(--muted)">نسبة الاكتمال</div>
+      </div>
+      <div style="background:var(--off);border:1px solid #DDE8EA;border-radius:8px;padding:0.7rem;text-align:center">
+        <div style="font-size:1.4rem;font-weight:900;font-family:'Cairo';color:var(--teal)">8</div>
+        <div style="font-size:0.72rem;color:var(--muted)">فئات مغطّاة</div>
+      </div>
+      <div style="background:var(--off);border:1px solid #DDE8EA;border-radius:8px;padding:0.7rem;text-align:center">
+        <div style="font-size:1.4rem;font-weight:900;font-family:'Cairo';color:var(--gold)">سنوي</div>
+        <div style="font-size:0.72rem;color:var(--muted)">دورية المراجعة</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="#top" class="back-top">↑ العودة إلى الأعلى</a>
+
+</div><!-- /container -->
+
+<footer>
+  © 2025 — حزمة تقارير المدير المالي الجزئي للكيانات الوقفية الاستثمارية — المملكة العربية السعودية<br>
+  <small>جميع الأرقام توضيحية فقط | يُعاد ربطها ببيانات الكيان الفعلية عند التطبيق</small>
+</footer>
+
+<script>
+// Filter
+function filterCards(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.report-card').forEach(card => {
+    const crit = card.dataset.crit;
+    const freq = card.dataset.freq;
+    if (type === 'all') { card.style.display = ''; return; }
+    if (type === 'high' || type === 'med' || type === 'low') {
+      card.style.display = crit === type ? '' : 'none';
+    } else if (type === 'monthly') {
+      card.style.display = freq === 'monthly' ? '' : 'none';
+    } else if (type === 'weekly') {
+      card.style.display = freq === 'weekly' ? '' : 'none';
+    }
+  });
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => {
+  const siblings = el.parentElement?.children;
+  if(siblings){ [...siblings].forEach((s,i) => { if(s.classList.contains('reveal')) s.style.transitionDelay = `${i*0.08}s`; }); }
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
